@@ -1,0 +1,20 @@
+<app-header></app-header>
+<main>
+  <ul id="users">
+    <!-- using for loop to render all the list users -->
+    @for(user of users;track user.id){
+    <li>
+      <!-- we can pass the input to custom and take output from custom the name should be same in both places,and whatever value we emit from there, here we can collect it in $event -->
+      <app-user [user]="user" [isSelected]="user.id===selectedUserId" (selectUser)="onSelectUser($event)" />
+    </li>
+    }
+  </ul>
+
+  @if(selectedUserId){
+  <app-tasks [selectedUserId]="selectedUserId"></app-tasks>
+  }@else{
+  <p id="fallback">Select a User to see there Task</p>
+  }
+
+
+</main>
